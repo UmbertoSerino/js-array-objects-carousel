@@ -1,26 +1,20 @@
-// Consegna:
-// Dato un array di oggetti letterali con:
-// URL dell’immagine
-// Titolo della slide
-// Descrizione della slide
-// Creare un carosello come nella foto allegata.
-// Milestone 0:
+// ! Consegna:
+// ! Dato un array di oggetti letterali con:
+// ! URL dell’immagine
+// ! Titolo della slide
+// ! Descrizione della slide
+// ! Creare un carosello come nella foto allegata.
+// ! Milestone 0:
 // Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider.
 // Milestone 1:
 // Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
 // Al click dell'utente sulle frecce verso l'alto o verso il basso, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 // Milestone 2: Aggiungere il ciclo infinito del carosello.
 // Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
-// BONUS 1:
-// Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’immagine corrispondente.
-// BONUS 2:
-// Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
-// BONUS 3:
-// Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
 
 const images = [
     {   image: './img/01.webp',
-        title: 'Marvel\'s Spiderman Miles Morale',
+        title: 'Marvel\'s Spiderman Miles Morales',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     }, 
     {   image: 'img/02.webp',
@@ -41,14 +35,23 @@ const images = [
     }
 ];
 
-/* <main class="my_container">
-<article class="card">
-    <img class="my_img" src="./img/01.webp" alt="spiderman">
-    <div>
-        <h2 class="my_img-title">Titolo dell'immagine</h2>
-        <p class="my_img-description">Descrizione dell'immagine</p>
-    </div>
-</article>
-</main> */
+const containerImg = document.querySelector("img.my_img");
 
-const descriptionImg = document.querySelector()
+// ==================== Function ==================
+function createdSlide(imageElement, titleElement, descriptionElement, index) {
+    const generateHtml = `
+    <article class="card position-relative carousel-item="${index}">
+        <img class="my_img" src="${imageElement}" alt="picture">
+        <div class="my_container_text">
+            <h2> ${titleElement}</h2>
+            <p>${descriptionElement}</p>
+        </div>
+        <div class="my_button-section">
+            <button class="my_button_over btn btn-primary">Prev</button>
+            <button class="my_button_under btn btn-success">Next</button>
+        </div>
+    </article>;
+    `
+    
+}
+
