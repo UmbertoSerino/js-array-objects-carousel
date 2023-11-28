@@ -35,23 +35,51 @@ const images = [
     }
 ];
 
-const containerImg = document.querySelector("img.my_img");
+const slidesWrapperEl = document.querySelector("#carousel-container");
 
-// ==================== Function ==================
-function createdSlide(imageElement, titleElement, descriptionElement, index) {
-    const generateHtml = `
-    <article class="card position-relative carousel-item="${index}">
-        <img class="my_img" src="${imageElement}" alt="picture">
-        <div class="my_container_text">
-            <h2> ${titleElement}</h2>
-            <p>${descriptionElement}</p>
-        </div>
-        <div class="my_button-section">
-            <button class="my_button_over btn btn-primary">Prev</button>
-            <button class="my_button_under btn btn-success">Next</button>
-        </div>
-    </article>;
-    `
-    
+
+let activeIndex = 0;
+
+
+images.forEach((element, index) => {
+    slidesWrapperEl.innerHTML += generateNewSlide(element.image, element.title, element.text, index);
+    index++
+
+});
+
+document.querySelector('div.carousel[carousel-item="' + activeIndex + '"]').classList.add('active');
+
+let clock;
+
+document.querySelector('.my_button_over').addEventListener('click', function(){
+    let newIndex = (activeIndex - 1 + images.length) % images.length;
+    document.querySelector('div.carousel[carousel-item="' + activeIndex + '"]').classList.remove('active');
+    activeIndex = newIndex;
+    document.querySelector('div.carousel[carousel-item="' + activeIndex + '"]').classList.add('active');
+});
+
+document.querySelector('.my_button_under').addEventListener('click', function(){
+    let newIndex = (activeIndex + 1) % images.length;
+    document.querySelector('div.carousel[carousel-item="' + activeIndex + '"]').classList.remove('active');
+    activeIndex = newIndex;
+    document.querySelector('div.carousel[carousel-item="' + activeIndex + '"]').classList.add('active');
+});
+
+
+
+// function ============================
+
+function generateNewSlide(imageElement, titleElement, textElement, index) {
+    return `<div class="carousel" carousel-item="${index}">
+                <img class="my_img" src="${imageElement}" alt="picture">
+                <div class="my_container_text">
+                    <h2>${titleElement}</h2>
+                    <p>${textElement}</p>
+                </div>
+            </div>`
+};
+
+function changeToSlide(newIndex){
+    document.querySelector('div.carousel.active').classList.remove('active');
+    document.querySelector('div.carousel-item[carousel-item="' + newIndex +'"]').classList.add('active');
 }
-

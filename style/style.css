@@ -5,20 +5,27 @@ main.my_container{
 }
 
 article.card{
+    width: 60%;
+    height: 550px;
+    margin: 0 auto;
+
+}
+
+div.carousel{
     width: 100%;
-    height: 650px;
-    position: relative;
+    height: 100%;
     display: none;
 }
 
-article.card.active{
-    display: block;
+div.carousel.active{
+display: block;
 }
 
 img.my_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 div.my_container_text{
@@ -31,10 +38,13 @@ div.my_container_text{
     padding: 1rem;
 }
 
+
+
 button{
     position: absolute;
     right: 50%;
     transform: translateX(50%);
+    z-index: 1;
 
 }
 
